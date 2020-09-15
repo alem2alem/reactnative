@@ -1,0 +1,10 @@
+{
+  "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://rg-f27.anonymous.nucampsite.exp.direct",
+  "packagerNgrokUrl": "https://packager.rg-f27.anonymous.nucampsite.exp.direct",
+  "ngrokPid": 58499,
+  "devToolsPort": 19002,
+  "packagerPort": 19003,
+  "packagerPid": 58489,
+  "webpackServerPort": null
+}
