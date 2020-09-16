@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Text, View, ScrollView, FlatList, TouchableNativeFeedbackComponent} from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 import { CAMPSITES} from '../Shared/campsites';
-import { COMMENTS } from '..git/shared/comments';
+import { COMMENTS } from '../Shared/comments';
 
 
 
