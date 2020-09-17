@@ -31,7 +31,10 @@ function RenderComments({comments}) {
       );
 }
 
-function RenderCampsite({campsite}) {
+function RenderCampsite(props) {
+
+    const {campsites} = props;
+
     if (campsite) {
         return (
             <Card
@@ -40,6 +43,15 @@ function RenderCampsite({campsite}) {
                 <Text style={{margin: 10}}>
                     {campsite.description}
                 </Text>
+                <Icon
+                    name={props.favorite ? 'heart-o' : 'heart-o'}
+                    type='font-awesome'
+                    color='#f50'
+                    raised 
+                    reverse
+                    onPress={()=> props.favorite ? 
+                          console.log('Already set as a favorite ') : props.markFavorite()}
+                />
             </Card>
         );
     }
@@ -52,9 +64,14 @@ class CampsiteInfo extends Component {
         super(props);
         this.state = { 
             campsites: CAMPSITES,
-            comments: COMMENTS
+            comments: COMMENTS,
+            favorite: false
         };
     }
+markFavorite() {
+    this.setState({favorite:true})
+}
+
   static navigationOption = {
       title: 'Campsite Information'
   }
@@ -65,7 +82,11 @@ class CampsiteInfo extends Component {
         const comments = this.state.comments.filter(comments=>comments.campsite.id === campsiteID);
     return (
         <ScrollView>
-              <RenderCampsite campsite= {campsite} />
+              <RenderCampsite campsite= {campsite} 
+                  favorite={this.state.filter}
+                  markFavorite={()=>this.favorite()}
+              />
+
               <RenderComments comments = {comments} /> 
          </ScrollView>
       );
