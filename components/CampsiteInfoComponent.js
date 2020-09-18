@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
 import { Text, View, ScrollView, FlatList, TouchableNativeFeedbackComponent} from 'react-native';
 import { Card, Icon } from 'react-native-elements';
-import { CAMPSITES} from '../Shared/campsites';
-import { COMMENTS } from '../Shared/comments';
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
 
+const mapStateToProps = state => {
+  return {
+      campsites: state.campsites,
+      comments: state.comments 
+  };
+};
 
 
 function RenderComments({comments}) {
@@ -63,8 +69,6 @@ class CampsiteInfo extends Component {
     constructor(props){
         super(props);
         this.state = { 
-            campsites: CAMPSITES,
-            comments: COMMENTS,
             favorite: false
         };
     }
@@ -78,8 +82,8 @@ markFavorite() {
 
     render() {
         const campsiteId = this.props.navigation.getParam('campsiteId');
-        const campsite = this.state.campsites.filter(campsite =>campsite.id ===campsiteId)[0];
-        const comments = this.state.comments.filter(comments=>comments.campsite.id === campsiteID);
+        const campsite = this.props.campsites.campsites.filter(campsite =>campsite.id ===campsiteId)[0];
+        const comments = this.props.comments.comments.filter(comments=>comments.campsite.id === campsiteID);
     return (
         <ScrollView>
               <RenderCampsite campsite= {campsite} 
@@ -94,4 +98,5 @@ markFavorite() {
     
 }
 
-export default CampsiteInfo;
+export default connect(mapStateToProps)(CampsiteInfo);
+
